@@ -1,0 +1,15 @@
+name: Pull Request Target POC
+on: 
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - 'feature/**'
+
+jobs:
+  print-variables:
+    name: Print Variables
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo {secrets.TEST_VARIABLE}'
+
