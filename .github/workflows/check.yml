@@ -13,5 +13,5 @@ jobs:
     steps:
       - name: Print TEST_VARIABLE from target branch
         shell: bash
-        run: echo "${{vars.TEST_VARIABLE}}"
+        run: echo ${{vars.TEST_VARIABLE}}
 
