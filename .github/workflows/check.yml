@@ -8,8 +8,10 @@ jobs:
   print-variables:
     name: Print Variables
     runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{vars.TEST_VARIABLE}}"
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Print TEST_VARIABLE from target branch
+        shell: bash
+        run: echo "${{vars.TEST_VARIABLE}}"
 
