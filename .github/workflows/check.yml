@@ -10,11 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
     steps:
       - name: Print TEST_VARIABLE from target branch
         shell: bash
         run: |
-          echo ${{vars.TEST_VARIABLE}}
-          echo '${{vars.TEST_VARIABLE}}'
-          echo Hello?
+          echo "TEST_VARIABLE: $TEST_VARIABLE"
 
