@@ -10,4 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: 'echo ${{vars.TEST_VARIABLE}}'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
