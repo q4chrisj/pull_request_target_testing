@@ -22,27 +22,30 @@ jobs:
           
           if [ "$TARGET_BRANCH" = "main" ]; then
             ENVIRONMENT='prod'
+          elif [ "$TARGET_BRANCH" = "staging"]; then
+            ENVIRONMENT='staging'
+          else
+            ENVIRONMENT='dev'
           fi
 
           echo "Target environment is: $ENVIRONMENT"
           echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
           
 
-  print-variables-prod:
-    # environment: ${{ steps.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
-    if: github.event.pull_request.base.ref == 'main'
-    environment: 'prod'
-    name: Print Variables
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
-      # ENVIRONMENT: ${{ step.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
-    steps:
-      - name: Print TEST_VARIABLE from target branch
-        shell: bash
-        run: |
-          echo "TEST_VARIABLE: $TEST_VARIABLE"
+  # print-variables-prod:
+  #   if: github.event.pull_request.base.ref == 'main'
+  #   environment: 'prod'
+  #   name: Print Variables
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
+  #     # ENVIRONMENT: ${{ step.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
+  #   steps:
+  #     - name: Print TEST_VARIABLE from target branch
+  #       shell: bash
+  #       run: |
+  #         echo "TEST_VARIABLE: $TEST_VARIABLE"
 
   print-variables-dynamic:
     needs: determine-environment
