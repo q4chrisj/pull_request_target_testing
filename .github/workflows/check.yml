@@ -42,10 +42,10 @@ jobs:
           echo "TEST_VARIABLE: $TEST_VARIABLE"
 
   print-variables-dynamic:
-    needs: determine-environment
+    needs: get-environment
     environment: 
-      name: ${{needs.determine-environment.outputs.ENVIRONMENT}}
-    name: Print Variables
+      name: ${{needs.get-environment.outputs.ENVIRONMENT}}
+    name: Print Variables With Dynamic Environment
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
