@@ -24,6 +24,7 @@ jobs:
             ENVIRONMENT='prod'
           fi
 
+          echo "Target environment is: $ENVIRONMENT"
           echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
           
 
