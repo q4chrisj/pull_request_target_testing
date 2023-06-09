@@ -12,12 +12,11 @@ jobs:
       - name: What branch are we merging into?
         shell: bash
         run: |
-          TARGET_BRANCH=${{ github.event.pull_request.base.ref }}
-          ENVIRONMENT=""
+          TARGET_BRANCH='main'
+          ENVIRONMENT=''
 
-          if [$TARGET_BRANCH == 'main']
-          then
-            $ENVIRONMENT='prod'
+          if [ "$TARGET_BRANCH" = "main" ]; then
+            ENVIRONMENT='prod'
           fi
 
           echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
