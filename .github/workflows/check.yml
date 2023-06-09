@@ -46,7 +46,7 @@ jobs:
   print-variables-dynamic:
     needs: determine-environment
     environment: 
-      name: ${{needs.determine-environment.outputs.ENVIRONMENT}}
+      name: ${{needs.determine-environment.outputs.target_environment}}
     name: Print Variables With Dynamic Environment
     runs-on: ubuntu-latest
     env:
