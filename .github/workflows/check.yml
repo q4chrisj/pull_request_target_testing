@@ -20,9 +20,11 @@ jobs:
           fi
 
           echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+          
+          echo "The environment is ${{env.ENVIRONMENT}}"
 
   print-variables:
-    environment: ${{env.ENVIRONMENT}} # need to figure out how to determine this dynamically
+    environment: ${{ENVIRONMENT}} # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
