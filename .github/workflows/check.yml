@@ -13,11 +13,17 @@ jobs:
         shell: bash
         run: |
           TARGET_BRANCH=${{ github.event.pull_request.base.ref }}
+          ENVIRONMENT=""
 
-          echo $TARGET_BRANCH
+          if [TARGET_BRANCH == 'main']
+          then
+            ENVIRONMENT='prod'
+          fi
+
+          echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
 
   print-variables:
-    environment: prod # need to figure out how to determine this dynamically
+    environment: $ENVIRONMENT # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
