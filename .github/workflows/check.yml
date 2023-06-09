@@ -42,9 +42,9 @@ jobs:
           echo "TEST_VARIABLE: $TEST_VARIABLE"
 
   print-variables-dynamic:
-    needs: get-environment
+    needs: determine-environment
     environment: 
-      name: ${{needs.get-environment.outputs.ENVIRONMENT}}
+      name: ${{needs.determine-environment.get-environment.outputs.ENVIRONMENT}}
     name: Print Variables With Dynamic Environment
     runs-on: ubuntu-latest
     env:
