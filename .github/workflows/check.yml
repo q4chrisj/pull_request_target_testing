@@ -9,6 +9,8 @@ jobs:
   determine-environment:
     name: Determine the target environment
     runs-on: ubuntu-latest
+    outputs: 
+      target_environment: ${{steps.get-environment.outputs.ENVIRONMENT}}
     steps:
       - name: What branch are we merging into?
         shell: bash
@@ -44,7 +46,7 @@ jobs:
   print-variables-dynamic:
     needs: determine-environment
     environment: 
-      name: ${{needs.determine-environment.get-environment.outputs.ENVIRONMENT}}
+      name: ${{needs.determine-environment.outputs.ENVIRONMENT}}
     name: Print Variables With Dynamic Environment
     runs-on: ubuntu-latest
     env:
