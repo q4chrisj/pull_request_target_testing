@@ -6,27 +6,29 @@ on:
       - reopened
 
 jobs:
-  determine-environment:
-    name: Determine the target environment
-    runs-on: ubuntu-latest
-    steps:
-      - name: What branch are we merging into?
-        shell: bash
-        run: |
-          TARGET_BRANCH='main'
-          ENVIRONMENT=''
+  # determine-environment:
+  #   name: Determine the target environment
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: What branch are we merging into?
+  #       shell: bash
+  #       run: |
+  #         TARGET_BRANCH='main'
+  #         ENVIRONMENT=''
+  #
+  #         
+  #         if [ "$TARGET_BRANCH" = "main" ]; then
+  #           ENVIRONMENT='prod'
+  #         fi
+  #
+  #         echo "environment=$ENVIRONMENT" >> $GITHUB_ENV
+  #         
+  #         echo "The environment is ${{environment}}"
 
-          if [ "$TARGET_BRANCH" = "main" ]; then
-            ENVIRONMENT='prod'
-          fi
-
-          echo "environment=$ENVIRONMENT" >> $GITHUB_ENV
-          
-          echo "The environment is ${{environment}}"
-
-  print-variables:
+  print-variables-prod:
+    if: github.event.pull_request.base.ref = 'main'
     environment:
-      name: $environment # need to figure out how to determine this dynamically
+      name: prod # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
