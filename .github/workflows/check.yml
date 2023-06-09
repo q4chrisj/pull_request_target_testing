@@ -22,14 +22,13 @@ jobs:
             ENVIRONMENT='prod'
           fi
 
-          echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
+          echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
           
-          echo "The environment is ${{environment}}"
 
   print-variables-prod:
     # if: github.event.pull_request.base.ref == 'main'
     environment:
-      name: ${{ steps.get-environment.outputs.environment}} # need to figure out how to determine this dynamically
+      name: ${{ steps.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
