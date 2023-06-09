@@ -25,7 +25,7 @@ jobs:
 
   print-variables:
     environment:
-      name: ${{environment}} # need to figure out how to determine this dynamically
+      name: ${{env.environment}} # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
