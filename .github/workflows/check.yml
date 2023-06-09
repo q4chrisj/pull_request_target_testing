@@ -5,8 +5,19 @@ on:
       - opened
 
 jobs:
+  determine-environment:
+    name: Determine the target environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: What branch are we merging into?
+        shell: bash
+        run: |
+          TARGET_BRANCH=${{ github.event.pull_request.base.ref }}
+
+          echo $TARGET_BRANCH
+
   print-variables:
-    environment: prod
+    environment: prod # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
