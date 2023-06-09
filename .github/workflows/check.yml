@@ -15,9 +15,9 @@ jobs:
           TARGET_BRANCH=${{ github.event.pull_request.base.ref }}
           ENVIRONMENT=""
 
-          if [TARGET_BRANCH == 'main']
+          if [$TARGET_BRANCH == 'main']
           then
-            ENVIRONMENT='prod'
+            $ENVIRONMENT='prod'
           fi
 
           echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
