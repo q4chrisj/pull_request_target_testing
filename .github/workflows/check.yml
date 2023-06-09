@@ -27,8 +27,7 @@ jobs:
 
   print-variables-prod:
     # if: github.event.pull_request.base.ref == 'main'
-    environment:
-      name: ${{ steps.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
+    environment: ${{ steps.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
