@@ -7,12 +7,12 @@ on:
 
 jobs:
   determine-environment:
-    id: set-environment
     name: Determine the target environment
     runs-on: ubuntu-latest
     steps:
       - name: What branch are we merging into?
         shell: bash
+        id: get-environment
         run: |
           TARGET_BRANCH='main'
           ENVIRONMENT=''
@@ -29,7 +29,7 @@ jobs:
   print-variables-prod:
     # if: github.event.pull_request.base.ref == 'main'
     environment:
-      name: ${{ steps.set-environment.output.environment}} # need to figure out how to determine this dynamically
+      name: ${{ steps.get-environment.output.environment}} # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
