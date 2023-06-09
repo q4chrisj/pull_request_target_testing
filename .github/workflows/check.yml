@@ -6,6 +6,7 @@ on:
 
 jobs:
   print-variables:
+    environment: prod
     name: Print Variables
     runs-on: ubuntu-latest
     env:
