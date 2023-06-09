@@ -14,7 +14,7 @@ jobs:
         shell: bash
         id: get-environment
         run: |
-          TARGET_BRANCH='main'
+          TARGET_BRANCH=github.event.pull_request.base.ref
           ENVIRONMENT=''
 
           
@@ -26,8 +26,8 @@ jobs:
           
 
   print-variables-prod:
-    # if: github.event.pull_request.base.ref == 'main'
     # environment: ${{ steps.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
+    if: github.event.pull_request.base.ref == 'main'
     environment: 'prod'
     name: Print Variables
     runs-on: ubuntu-latest
