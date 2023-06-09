@@ -21,16 +21,16 @@ jobs:
 
           echo "environment=$ENVIRONMENT" >> $GITHUB_ENV
           
-          echo "The environment is ${{env.environment}}"
+          echo "The environment is ${{environment}}"
 
   print-variables:
-    #environment: ${{ENVIRONMENT}} # need to figure out how to determine this dynamically
+    environment:
+      name: ${{environment}} # need to figure out how to determine this dynamically
     name: Print Variables
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
-      TARGET_ENVIRONMENT: $environment
     steps:
       - name: Print TEST_VARIABLE from target branch
         shell: bash
