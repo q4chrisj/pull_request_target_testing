@@ -41,3 +41,17 @@ jobs:
         run: |
           echo "TEST_VARIABLE: $TEST_VARIABLE"
 
+  print-variables-dynamic:
+    needs: determine-environment
+    environment: 
+      name: ${{needs.determine-environment.outputs.ENVIRONMENT}}
+    name: Print Variables
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
+    steps:
+      - name: Print TEST_VARIABLE from target branch
+        shell: bash
+        run: |
+          echo "TEST_VARIABLE: $TEST_VARIABLE"
