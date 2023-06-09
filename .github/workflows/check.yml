@@ -34,7 +34,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
-      ENVIRONMENT: ${{ step.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
+      # ENVIRONMENT: ${{ step.get-environment.outputs.ENVIRONMENT}} # need to figure out how to determine this dynamically
     steps:
       - name: Print TEST_VARIABLE from target branch
         shell: bash
