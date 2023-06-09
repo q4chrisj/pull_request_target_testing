@@ -16,7 +16,7 @@ jobs:
         shell: bash
         id: get-environment
         run: |
-          TARGET_BRANCH=github.event.pull_request.base.ref
+          TARGET_BRANCH=${{github.event.pull_request.base.ref}}
           ENVIRONMENT=''
 
           
