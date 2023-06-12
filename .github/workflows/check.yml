@@ -3,13 +3,44 @@ on:
   pull_request_target:
     types:
       - opened
-    branches:
-      - 'feature/**'
+      - reopened
 
 jobs:
-  print-variables:
-    name: Print Variables
+  determine-environment:
+    name: Determine the target environment
     runs-on: ubuntu-latest
+    outputs: 
+      target_environment: ${{steps.get-environment.outputs.ENVIRONMENT}}
     steps:
-      - run: 'echo {secrets.TEST_VARIABLE}'
+      - name: What branch are we merging into?
+        shell: bash
+        id: get-environment
+        run: |
+          TARGET_BRANCH=${{github.event.pull_request.base.ref}}
+          ENVIRONMENT=''
+          
+          if [ "$TARGET_BRANCH" = "main" ]; then
+            ENVIRONMENT='prod'
+          elif [ "$TARGET_BRANCH" = "staging"]; then
+            ENVIRONMENT='staging'
+          else
+            ENVIRONMENT='dev'
+          fi
 
+          echo "Target environment is: $ENVIRONMENT"
+          echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
+
+  print-variables-dynamic:
+    needs: determine-environment
+    environment: 
+      name: ${{needs.determine-environment.outputs.target_environment}}
+    name: Print Variables With Dynamic Environment
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
+    steps:
+      - name: Print TEST_VARIABLE from target branch
+        shell: bash
+        run: |
+          echo "TEST_VARIABLE: $TEST_VARIABLE"
