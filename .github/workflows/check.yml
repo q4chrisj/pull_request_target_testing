@@ -6,6 +6,7 @@ on:
       - reopened
 
 jobs:
+  # This whole job can be replaced with: https://github.com/q4mobile/events-platform/blob/develop/.github/workflows/build.yml
   determine-environment:
     name: Determine the target environment
     runs-on: ubuntu-latest
