@@ -21,7 +21,7 @@ jobs:
           
           if [ "$TARGET_BRANCH" = "main" ]; then
             ENVIRONMENT='prod'
-          elif [ "$TARGET_BRANCH" = "staging"]; then
+          elif [ "$TARGET_BRANCH" = "staging" ]; then
             ENVIRONMENT='staging'
           else
             ENVIRONMENT='dev'
