@@ -55,4 +55,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Parameter checks
-        uses: q4mobile/prefligh-checks@main
+        uses: q4mobile/preflight-checks@main
