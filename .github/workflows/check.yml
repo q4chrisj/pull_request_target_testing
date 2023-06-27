@@ -54,6 +54,7 @@ jobs:
     name: Validate SSM parameters
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Parameter checks
         uses: q4mobile/preflight-checks@feature/PRDVOPS-1054
         with:
