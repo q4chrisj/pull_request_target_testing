@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Parameter checks
-        uses: q4mobile/preflight-checks@main
+        uses: q4mobile/preflight-checks@feature/PRDVOPS-1054
         with:
           token: ${{ secrets.GITHUB_TOKEN}}
           target-aws-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
