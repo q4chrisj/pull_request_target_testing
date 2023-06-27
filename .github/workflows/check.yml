@@ -1,5 +1,5 @@
 name: Pull Request Target POC
-on: 
+on:
   pull_request_target:
     types:
       - opened
@@ -10,7 +10,7 @@ jobs:
   determine-environment:
     name: Determine the target environment
     runs-on: ubuntu-latest
-    outputs: 
+    outputs:
       target_environment: ${{steps.get-environment.outputs.ENVIRONMENT}}
     steps:
       - name: What branch are we merging into?
@@ -19,7 +19,7 @@ jobs:
         run: |
           TARGET_BRANCH=${{github.event.pull_request.base.ref}}
           ENVIRONMENT=''
-          
+
           if [ "$TARGET_BRANCH" = "main" ]; then
             ENVIRONMENT='prod'
           elif [ "$TARGET_BRANCH" = "staging" ]; then
@@ -33,7 +33,7 @@ jobs:
 
   print-variables-dynamic:
     needs: determine-environment
-    environment: 
+    environment:
       name: ${{needs.determine-environment.outputs.target_environment}}
     name: Print Variables With Dynamic Environment
     runs-on: ubuntu-latest
@@ -45,3 +45,13 @@ jobs:
         shell: bash
         run: |
           echo "TEST_VARIABLE: $TEST_VARIABLE"
+
+  validate-parameters:
+    needs: determine-environment
+    environment:
+      name: ${{needs.determine-environment.outputs.target_environment}}
+    name: Validate SSM parameters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Parameter checks
+        uses: q4mobile/prefligh-checks@main
