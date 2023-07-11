@@ -14,24 +14,6 @@ jobs:
     outputs:
       target_environment: ${{steps.get-environment.outputs.ENVIRONMENT}}
     steps:
-      - name: "Set variables"
-        uses: q4mobile/branch-env-vars@v1.0.5
-        id: branch_check
-        with:
-          bevOverwrite: true
-          NODE_ENV: |
-            !pr|develop:dev
-            !pr|demo:demo
-            !pr|staging:stage
-            !pr|master:prod
-          TF_WORKSPACE: |
-            !pr|develop:dev
-            !pr|demo:dev
-            !pr|staging:stage
-            !pr|master:prod
-      outputs:
-        NODE_ENV: ${{ env.NODE_ENV }}
-        TF_WORKSPACE: ${{ env.TF_WORKSPACE }}
       - name: What branch are we merging into?
         shell: bash
         id: get-environment
