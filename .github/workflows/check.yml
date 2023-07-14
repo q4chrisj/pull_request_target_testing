@@ -61,3 +61,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN}}
           target_aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
           target_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          app_name: "platform-studio-eds"
