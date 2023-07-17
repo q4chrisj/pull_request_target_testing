@@ -32,20 +32,20 @@ jobs:
           echo "Target environment is: $ENVIRONMENT"
           echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
 
-  print-variables-dynamic:
-    needs: determine-environment
-    environment:
-      name: ${{needs.determine-environment.outputs.target_environment}}
-    name: Print Variables With Dynamic Environment
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
-    steps:
-      - name: Print TEST_VARIABLE from target branch
-        shell: bash
-        run: |
-          echo "TEST_VARIABLE: $TEST_VARIABLE"
+  # print-variables-dynamic:
+  #   needs: determine-environment
+  #   environment:
+  #     name: ${{needs.determine-environment.outputs.target_environment}}
+  #   name: Print Variables With Dynamic Environment
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
+  #   steps:
+  #     - name: Print TEST_VARIABLE from target branch
+  #       shell: bash
+  #       run: |
+  #         echo "TEST_VARIABLE: $TEST_VARIABLE"
 
   validate-parameters:
     needs: determine-environment
