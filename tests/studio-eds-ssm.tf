@@ -53,3 +53,6 @@ data "aws_ssm_parameter" "platform_event_bridge_bus_arn" {
 data "aws_ssm_parameter" "studioEventBridgeArn" {
   name = "/${var.ssm_parameter_prefix_secure}/${var.app_name_prefix}/STUDIO_EDS_EVENTBRIDGE_ARN"
 }
+data "aws_ssm_parameter" "studioEventBridgeArn" {
+  name = "/${var.ssm_parameter_prefix_secure}/${var.app_name_prefix}/TEST_PARAM"
+}
