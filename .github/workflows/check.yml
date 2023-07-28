@@ -15,8 +15,8 @@ jobs:
       target_environment: ${{steps.get-environment.outputs.ENVIRONMENT}}
     steps:
       - name: What branch are we merging into?
-        shell: bash
         id: get-environment
+        shell: bash
         run: |
           TARGET_BRANCH=${{github.event.pull_request.base.ref}}
           ENVIRONMENT=''
@@ -32,21 +32,6 @@ jobs:
           echo "Target environment is: $ENVIRONMENT"
           echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
 
-  # print-variables-dynamic:
-  #   needs: determine-environment
-  #   environment:
-  #     name: ${{needs.determine-environment.outputs.target_environment}}
-  #   name: Print Variables With Dynamic Environment
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     TEST_VARIABLE: ${{ vars.TEST_VARIABLE}}
-  #   steps:
-  #     - name: Print TEST_VARIABLE from target branch
-  #       shell: bash
-  #       run: |
-  #         echo "TEST_VARIABLE: $TEST_VARIABLE"
-
   validate-parameters:
     needs: determine-environment
     environment:
@@ -56,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Parameter checks
-        uses: q4mobile/preflight-checks@feature/PRDVOPS-1081
+        uses: q4mobile/preflight-checks@feature/PRDVOPS-1121
         with:
           token: ${{ secrets.GITHUB_TOKEN}}
           target_aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
