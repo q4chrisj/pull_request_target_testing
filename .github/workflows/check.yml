@@ -16,9 +16,7 @@ jobs:
     steps:
       - name: What branch are we merging into?
         id: get-environment
-        uses:
-          q4mobile/preflight-checks/blob/feature/PRDVOPS-1121/get-environment/action.yml
-          #
+        uses: q4mobile/preflight-checks/blob/feature/PRDVOPS-1121/get-environment/action.yml
         # shell: bash
         # run: |
         #   TARGET_BRANCH=${{github.event.pull_request.base.ref}}
