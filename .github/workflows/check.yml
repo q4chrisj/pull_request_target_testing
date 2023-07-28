@@ -16,21 +16,23 @@ jobs:
     steps:
       - name: What branch are we merging into?
         id: get-environment
-        shell: bash
-        run: |
-          TARGET_BRANCH=${{github.event.pull_request.base.ref}}
-          ENVIRONMENT=''
-
-          if [ "$TARGET_BRANCH" = "main" ]; then
-            ENVIRONMENT='prod'
-          elif [ "$TARGET_BRANCH" = "staging" ]; then
-            ENVIRONMENT='staging'
-          else
-            ENVIRONMENT='dev'
-          fi
-
-          echo "Target environment is: $ENVIRONMENT"
-          echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
+        uses: q4mobile/preflight-checks/get-environment/action.yml@feature/PRDVOPS-1121
+        #
+        # shell: bash
+        # run: |
+        #   TARGET_BRANCH=${{github.event.pull_request.base.ref}}
+        #   ENVIRONMENT=''
+        #
+        #   if [ "$TARGET_BRANCH" = "main" ]; then
+        #     ENVIRONMENT='prod'
+        #   elif [ "$TARGET_BRANCH" = "staging" ]; then
+        #     ENVIRONMENT='staging'
+        #   else
+        #     ENVIRONMENT='dev'
+        #   fi
+        #
+        #   echo "Target environment is: $ENVIRONMENT"
+        #   echo "ENVIRONMENT=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
 
   validate-parameters:
     needs: determine-environment
