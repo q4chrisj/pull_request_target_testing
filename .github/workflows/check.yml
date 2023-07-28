@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: What branch are we merging into?
         id: get-environment
-        uses: q4mobile/preflight-checks/.github/actions/get-environment/action.yml@main
+        uses: q4mobile/preflight-checks/.github/actions/get-environment@main
         # shell: bash
         # run: |
         #   TARGET_BRANCH=${{github.event.pull_request.base.ref}}
