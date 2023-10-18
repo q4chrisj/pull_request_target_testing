@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Parameter checks
-        uses: q4mobile/preflight-checks@feature/PRDVOPS-1121
+        uses: q4mobile/preflight-checks@main
         with:
           token: ${{ secrets.GITHUB_TOKEN}}
           target_aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
