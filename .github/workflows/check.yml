@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: What branch are we merging into?
         id: get-environment
-        uses: q4mobile/preflight-checks/.github/actions/get-environment@feature/PRDVOPS-1121
+        uses: q4mobile/preflight-checks/.github/actions/get-environment@main
 
   validate-parameters:
     needs: determine-environment
